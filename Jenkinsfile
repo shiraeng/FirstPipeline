@@ -8,7 +8,7 @@ pipeline {
         stage("stage num 1") {
             steps {
                 echo "hello world"
-                echo '$TEMP_ENV'
+                echo '${TEMP_ENV}'
             }
         }
 
