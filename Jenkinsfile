@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     options {
-        timeout(time: 1, unit: 'SECONDS')
-        buildDiscarder(logRotator(numToKeepStr: '3'))
+        timeout(time: 5, unit: 'SECONDS')
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     environment{
         TEMP_ENV="We don't have a break today???"
