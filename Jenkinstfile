@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    environment{
+        TEMP_ENV="We don't have a break today???"
 
+    }
     stages {
         stage("stage num 1") {
             steps {
                 echo "hello world"
+                echo '$TEMP_ENV'
             }
         }
 
