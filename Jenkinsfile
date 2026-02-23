@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    options {
+        timeout(time: 1, unit: 'SECONDS')
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+    }
     environment{
         TEMP_ENV="We don't have a break today???"
 
@@ -15,6 +20,21 @@ pipeline {
         stage("stage num 2") {
             steps {
                 echo "go to success"
+            }
+        }
+          stage('learn credentials') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: '1',
+                        usernameVariable: 'USER',
+                        passwordVariable: 'PASS'
+                    )
+                ]) {
+                    bat '''
+                        echo Deploying as %USER% %PASS%
+                    '''
+                }
             }
         }
 
